@@ -3,7 +3,7 @@ import { Member } from '../_models/member';
 import { AppConfigService } from '../_services/app-config.service';
 import { trigger, transition, animate, style, state } from '@angular/animations';
 
-let speed = 50;
+let delay = 50;
 
 @Component({
   selector: 'app-lists',
@@ -16,33 +16,29 @@ let speed = 50;
       state('idle', style({
       })),
       transition('moving <=> idle', [
-        animate('0.6s ease-out', style({
+        animate(delay, style({
           transform: 'translateY(-100%)',
           'background-color': 'transparent'
         }))
       ]),
       transition(':enter', [
-        animate('0.6s ease', style({
+        animate(delay, style({
           transform: 'translateY(-110%)',
         }))
       ]),
       transition(':leave', [
-        animate('0.6s ease', style({
+        animate(delay, style({
           opacity: 0,
         }))
       ])
     ])
   ]
 })
-export class ListsComponent implements OnInit {
-  MAX_SPEED: number = 50;
-  MIN_SPEED: number = 1500;
 
+export class ListsComponent implements OnInit {
   public members: Member[];
   public currentMembers: Member[] = [];
-
-  // public speed: number = 50;
-  public increment: boolean = true;
+  public colorIndex: number = 0; 
 
   constructor(private AppConfig: AppConfigService) { }
 
@@ -52,44 +48,48 @@ export class ListsComponent implements OnInit {
     this.generateRandomMembers();
 
     setInterval(() => {
-      speed += 10 * (this.increment ? 1 : -1);
-    }, 50);
+        delay += this.increment();
+        // animation_delay = delay / 2;
+    }, delay);
 
     this.start();
   }
-  
+
+  increment = () => {
+    return Math.pow(delay, 0.2);
+  }
+
   start = () => {
     setTimeout(() => {
       const member = this.getRandomMember();
       this.currentMembers.shift();
 
-      this.currentMembers.push(member);
-
-      if (speed < this.MAX_SPEED || speed > this.MIN_SPEED) {
-        this.increment = !this.increment;
-      }
-
       this.currentMembers.forEach(m => {
         m.moving = !m.moving;
       });
-
-      this.start();
-    }, speed);
+      this.currentMembers.push(member);
+      if (delay < 1200) {
+        console.log(delay);
+        this.start();
+      }
+    }, delay);
   }
 
   generateRandomMembers = () => {
-    while (this.currentMembers.length < 5) {
+    while (this.currentMembers.length < 15) {
       const member = this.getRandomMember();
       this.currentMembers.push(member);
     }
   }
 
   getRandomMember = () => {
+    ++this.colorIndex;
     while (true) {
       const index: number = Math.floor(Math.random() * this.members.length);
       const member: Member = this.members[index];
 
       if (!this.currentMembers.includes(member)) {
+        member.color = this.colorIndex;
         return member;
       }
     }

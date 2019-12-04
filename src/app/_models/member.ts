@@ -3,4 +3,5 @@ export interface Member {
     Nombre: string;
     Apellido: string;
     moving: boolean;
+    color: number;
 }

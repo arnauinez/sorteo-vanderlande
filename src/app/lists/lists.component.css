@@ -8,6 +8,11 @@
 }
 
 .scrollbar {
-    height: 70%;
-    width: 35%;
+    height: 100%;
+    width: 70%;
+    border: 1px solid red;
+}
+
+.row {
+    height: fit-content;
 }
