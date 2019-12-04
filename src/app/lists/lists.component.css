@@ -1,0 +1,13 @@
+.content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-left: 5%;
+}
+
+.scrollbar {
+    height: 70%;
+    width: 35%;
+}

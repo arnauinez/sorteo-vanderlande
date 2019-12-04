@@ -1,0 +1,13 @@
+.color{
+    height: 70px;
+    border: 1px solid blue;
+
+    border-radius: 5px;
+    /* box-shadow: 1px 1px 1px 1px black; */
+
+    margin-top: 5px;
+}
+
+.value {
+    padding-left: 5%;
+}
