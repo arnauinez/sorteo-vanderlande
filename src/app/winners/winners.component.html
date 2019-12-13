@@ -1,0 +1,16 @@
+<div class="content">
+    <!-- <button type="button" class="clearButton">Clear</button>
+    <button type="button" class="clearButton">Start</button> -->
+
+    <div class="title">
+        Winners
+    </div>
+
+    <div class="winner-row" *ngFor="let winner of winners">
+        <div class="value">
+            <div class="name">
+                {{winner.Nombre}} {{winner.Apellido}}
+            </div>
+        </div>
+    </div>
+</div>

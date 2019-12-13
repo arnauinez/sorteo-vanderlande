@@ -1,0 +1,26 @@
+<div class="content">
+  <div class="left-content">
+    <app-lists 
+      [startSubject]="startSubject" 
+      [dataSubject]="dataSubject"
+      (winnerEvent)="notifyWinner($event)">
+    </app-lists>
+  </div>
+  <div class="right-content">
+    <div class="winners">
+        <app-winners 
+          [clearSubject]="clearSubject"
+          [winnerSubject]="winnerSubject">  
+        </app-winners>
+    </div>
+    
+    <div class="runtime-buttons">
+      <app-runtime-buttons
+        (start)="start()"
+        (clear)="clear()"
+        (fetch)="fetch($event)">
+      </app-runtime-buttons>
+    </div>
+  </div>
+
+</div>

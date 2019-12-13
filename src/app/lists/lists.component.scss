@@ -1,0 +1,59 @@
+.content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.scrollbar {
+    height: 100%;
+    width: 100%;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: flex-start;
+}
+
+.scroll-content {
+    overflow: hidden;
+
+    position: relative;
+
+
+}
+
+.row:first-child {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-end;;
+}
+
+.row:last-child {
+    height: 50px;
+}
+
+.row {
+    height: fit-content;
+
+
+}
+
+.start button:hover {
+    animation: zoom-in 1s;
+}
+
+@keyframes zoom-in {
+    0% {
+        zoom: 1;
+    }
+    100% {
+        zoom: 2;
+        height: 100px;
+        width: 40px;
+    }
+}

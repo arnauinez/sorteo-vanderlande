@@ -1,15 +1,16 @@
-<div class="bla" [style.transform]="'rotate3d(1, 1, 0, '+getRotation()+'deg)'">
+<div class="bla" [style.transform]="'rotate3d(1, 0, 0, '+getRotation()+'deg)'" >
     <div class="content" >
     
             <!-- [ngStyle]="{'transform': `rotateX(${getRotation()}deg)`}" -->
         <div [ngStyle]="{'width.%':getWidth()}" class="color" [ngClass]="{
             'no-margin': isMiddleRow()
         }">
-            <div class="value" 
+            <div class="value no-selectable" 
                 [style.font-size.em]="getFontSize()" 
                 [ngStyle]="{'background-color': getBackground()}"
                 [ngClass]="{
-                    'middle-row': isMiddleRow()
+                    'middle-row': isMiddleRow(),
+                    'align-bottom': isFirst()
                 }">
                 {{data.member.Nombre}} {{data.member.Apellido}}
             </div>

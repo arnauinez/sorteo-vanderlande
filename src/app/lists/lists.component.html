@@ -1,12 +1,14 @@
 <div class="content">
   <div class="scrollbar">
-    <ng-scrollbar #scroller>
-      <div *ngFor="let m of currentMembers; index as i" 
-          class="row" 
-          [@fadeInOut]="m.moving ? 'moving' : 'idle'">
-        <app-row [data]="{member: m, index: i}"></app-row>
+    <!-- <ng-scrollbar #scroller> -->
+      <div class="scroll-content" #scroll id="scrolling">
+        <div *ngFor="let m of currentMembers; index as i" 
+            class="row" 
+            [@fadeInOut]="m.moving ? 'moving' : 'idle'">
+          <app-row [data]="{member: m, index: i}"></app-row>
+        </div>
       </div>
-    </ng-scrollbar>
+    <!-- </ng-scrollbar> -->
   </div>
 </div>
 

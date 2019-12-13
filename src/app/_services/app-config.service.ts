@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Member } from '../_models/member';
-import input from '../../assets/input.json';
+// import input from '../../assets/input.json';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,8 @@ export class AppConfigService {
 constructor() { }
 
 load() {
-  AppConfigService.members = input;
-  console.log(AppConfigService.members);
-  
+  // AppConfigService.members = input;
+  // console.log(AppConfigService.members);
 }
 
 

@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Member } from '../_models/member';
-import { WidthCalculator } from '../helpers/width-calculator';
-import { TextColor } from '../_models/text-color';
+import { Member } from '../../_models/member';
+import { WidthCalculator } from '../../helpers/width-calculator';
+import { TextColor } from '../../_models/text-color';
 
 @Component({
   selector: 'app-row',
   templateUrl: './row.component.html',
-  styleUrls: ['./row.component.css']
+  styleUrls: ['./row.component.scss']
 })
 export class RowComponent implements OnInit {
 
@@ -28,7 +28,7 @@ export class RowComponent implements OnInit {
   }
 
   isMiddleRow = () => {
-    return this.data.index === 7;
+    return this.data.index === 10;
   }
 
   getBackground = () => {
@@ -38,6 +38,10 @@ export class RowComponent implements OnInit {
   
   getRotation = () => {
     return WidthCalculator.getRotatationX(this.data.index);
+  }
+
+  isFirst = () => {
+    return this.data.index === 0;
   }
 
 }
