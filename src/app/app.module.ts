@@ -14,10 +14,15 @@ import { WinnersComponent } from './winners/winners.component';
 import { MainComponent } from './main/main.component';
 import { RuntimeButtonsComponent } from './main/runtime-buttons/runtime-buttons.component';
 import { MaterialModule } from './modules/material/material.module';
+import { SoundsService } from './_services/sounds.service';
 
-export function initialize(config: AppConfigService) {
-   return () => config.load();
+export function initialize(config: AppConfigService, soundService: SoundsService) {
+   return () => {
+      config.load();
+      soundService.load();
+   }
 }
+
 
 @NgModule({
    declarations: [
@@ -37,12 +42,13 @@ export function initialize(config: AppConfigService) {
    ],
    providers: [
       AppConfigService,
-      // {
-      //    provide: APP_INITIALIZER,
-      //    useFactory: initialize,
-      //    multi: true,
-      //    deps: [AppConfigService]
-      // }
+      SoundsService,
+      {
+         provide: APP_INITIALIZER,
+         useFactory: initialize,
+         multi: true,
+         deps: [SoundsService, AppConfigService]
+      }
    ],
    bootstrap: [
       AppComponent

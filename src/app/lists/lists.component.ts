@@ -3,6 +3,7 @@ import { Member } from '../_models/member';
 import { AppConfigService } from '../_services/app-config.service';
 import { trigger, transition, animate, style, state } from '@angular/animations';
 import { BehaviorSubject } from 'rxjs';
+import { SoundsService } from '../_services/sounds.service';
 
 let delay = 50;
 const MAX_LENGTH = 21;
@@ -37,6 +38,7 @@ const MAX_LENGTH = 21;
   ]
 })
 export class ListsComponent implements OnInit {
+
   public members: Member[];
   public currentMembers: Member[] = [];
   public colorIndex = 0;
@@ -50,7 +52,7 @@ export class ListsComponent implements OnInit {
 
   @Output() winnerEvent: EventEmitter<Member> = new EventEmitter();
 
-  constructor(private AppConfig: AppConfigService, private detector: ChangeDetectorRef) { }
+  constructor(private AppConfig: AppConfigService, private detector: ChangeDetectorRef, private soundService: SoundsService) { }
 
   ngOnInit() {
     this.members = this.AppConfig.members;
@@ -69,13 +71,11 @@ export class ListsComponent implements OnInit {
 
     if (!this.running) {
       this.members = members;
-      this.clearBuffer();
       this.generateRandomMembers();
       // this.detector.detectChanges();
     }
 
     console.log('Updated', this.members);
-    
   }
 
   increment = () => {
@@ -91,6 +91,7 @@ export class ListsComponent implements OnInit {
         m.moving = !m.moving;
       });
       this.currentMembers.push(member);
+      this.soundService.clack();
       if (delay < 1200) {
         console.log(delay);
         this.running = true;
@@ -139,12 +140,13 @@ export class ListsComponent implements OnInit {
     const winner: Member = this.currentMembers[winnerIndex];
     console.log('Winner ...', winnerIndex, winner, this.currentMembers);
     this.winnerEvent.emit(winner);
+    this.soundService.win1();
   }
 
   clearBuffer = () => {
-    while(this.currentMembers.length > 0) {
+    while (this.currentMembers && this.currentMembers.length > 0) {
       setTimeout(() => {
-        console.log('clearing buffer...');
+        console.log('Cleaning buffer...');
         this.currentMembers.shift();
       }, 200);
     }
