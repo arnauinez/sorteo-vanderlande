@@ -31,7 +31,7 @@ export class WinnersComponent implements OnInit {
       if (winner) {
 
         const dialog = this.dialog.open(WinnerDialogComponent, {
-          data: {m: winner, ttl: -1},
+          data: {m: winner, ttl: 2200},
           width: '100vw',
           height: '100vh',
           // panelClass: 'winner-dialog'

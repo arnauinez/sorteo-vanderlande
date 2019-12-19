@@ -15,7 +15,7 @@ export class MainComponent implements OnInit {
 
   private startSubject: BehaviorSubject<void> = new BehaviorSubject(null);
   private clearSubject: BehaviorSubject<void> = new BehaviorSubject(null);
-  private dataSubject: BehaviorSubject<Member[]> = new BehaviorSubject(null);
+  private dataSubject: BehaviorSubject<{ list: Member[], name: string}> = new BehaviorSubject(null);
   private winnerSubject: BehaviorSubject<Member> = new BehaviorSubject(null);
 
   private fetch1Promise: Promise<Member[]>;
@@ -50,7 +50,9 @@ export class MainComponent implements OnInit {
     const promise = this.getPromise(inputRoute);
 
     try {
-      this.dataSubject.next(await promise);
+      const list = await promise;
+      const name = this.name(inputRoute);
+      this.dataSubject.next({list, name});
     } catch (err) {
       console.error(err);
     }
@@ -62,6 +64,16 @@ export class MainComponent implements OnInit {
     //   console.log('blab bla');
     //   console.error(err);
     // });
+  }
+
+  name = (inputRoute: InputRoute) => {
+    console.log(inputRoute);
+    switch (inputRoute) {
+      case InputRoute.List1:
+        return 'Lijst een';
+      case InputRoute.List2:
+        return 'Lijst twee';
+    }
   }
 
   getPromise = (inputRoute: InputRoute): Promise<Member[]> => {

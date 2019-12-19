@@ -46,14 +46,16 @@ export class ListsComponent implements OnInit {
   private winnersList: Member[] = [];
   public currentMembers: Member[] = [];
   public colorIndex = 0;
-  public incrementStepDelay = 0.65;
+  public incrementStepDelay = 0.5;
 
   private startSubscribed = false;
   private dataSubscribed = false;
   private running = false;
 
+  public list: string;
+
   @Input() startSubject: BehaviorSubject<void>;
-  @Input() dataSubject: BehaviorSubject<Member[]>;
+  @Input() dataSubject: BehaviorSubject<{ list: Member[], name: string}>;
 
   @Output() winnerEvent: EventEmitter<Member> = new EventEmitter();
 
@@ -71,8 +73,9 @@ export class ListsComponent implements OnInit {
         !this.startSubscribed ? this.startSubscribed = !this.startSubscribed : this.startRuffle();
     });
 
-    this.dataSubject.subscribe(_members => {
-      !this.dataSubscribed ? this.dataSubscribed = !this.dataSubscribed : this.onFetch(_members);
+    this.dataSubject.subscribe(data => {
+      this.list = data ? data.name : '';
+      !this.dataSubscribed ? this.dataSubscribed = !this.dataSubscribed : this.onFetch(data.list);
     });
   }
 
