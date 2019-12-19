@@ -15,6 +15,9 @@ import { MainComponent } from './main/main.component';
 import { RuntimeButtonsComponent } from './main/runtime-buttons/runtime-buttons.component';
 import { MaterialModule } from './modules/material/material.module';
 import { SoundsService } from './_services/sounds.service';
+import { FormsModule } from '@angular/forms';
+import { WinnerDialogComponent } from './winners/winner-dialog/winner-dialog.component';
+import { MatDialogModule } from '@angular/material';
 
 export function initialize(config: AppConfigService, soundService: SoundsService) {
    return () => {
@@ -32,14 +35,18 @@ export function initialize(config: AppConfigService, soundService: SoundsService
       WinnersComponent,
       MainComponent,
       RuntimeButtonsComponent,
+      WinnerDialogComponent,
    ],
    imports: [
       BrowserModule,
       BrowserAnimationsModule,
       MatSliderModule,
       NgScrollbarModule,
-      MaterialModule
+      MaterialModule,
+      FormsModule,
+      MatDialogModule
    ],
+   entryComponents: [WinnerDialogComponent],
    providers: [
       AppConfigService,
       SoundsService,

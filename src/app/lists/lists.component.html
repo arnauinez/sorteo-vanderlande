@@ -1,14 +1,12 @@
 <div class="content">
   <div class="scrollbar">
-    <!-- <ng-scrollbar #scroller> -->
-      <div class="scroll-content" #scroll id="scrolling">
         <div *ngFor="let m of currentMembers; index as i" 
             class="row" 
             [@fadeInOut]="m.moving ? 'moving' : 'idle'">
           <app-row [data]="{member: m, index: i}"></app-row>
         </div>
-      </div>
-    <!-- </ng-scrollbar> -->
+  </div>
+  <div class="slider">
+    <mat-slider min="0.2" max="0.6" step="0.05" [(ngModel)]="incrementStepDelay"></mat-slider>
   </div>
 </div>
-

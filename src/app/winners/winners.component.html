@@ -5,12 +5,17 @@
     <div class="title">
         Winners
     </div>
-
-    <div class="winner-row" *ngFor="let winner of winners">
-        <div class="value">
-            <div class="name">
-                {{winner.Nombre}} {{winner.Apellido}}
+    
+    <ng-scrollbar>
+        <div class="winner-list">
+            <div class="winner-row" *ngFor="let winner of winners">
+                <div class="value">
+                    <div class="name">
+                        {{winner.Nombre}} {{winner.Apellido}}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </ng-scrollbar>
+
 </div>

@@ -21,36 +21,55 @@
         border-bottom: 2px solid white;
     }
 
-    .winner-row {
-        padding-top: 10px;
-        width: 100%;
+    .winner-list {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        justify-content: flex-start;
 
-        align-items: center;
-        text-align: center;
+        padding-bottom: 20px;
 
-        height: 10%;        
+        height: inherit;
+        max-height: 100%;
 
-        .value {
+        .winner-row {
+            padding-top: 10px;
             width: 100%;
-            height: 100%;
+            display: flex;
+            justify-content: center;
+    
+            align-items: center;
+            text-align: center;
+    
+            height: 10%;   
             
-            // background-color: $accent;
-            
-            // border-radius: 5px;
-            // border-top: 3px solid darkgray;
-            // border-bottom: 3px solid darkgray;
-            // border-left: 15px solid darkgray;
-            // border-right: 15px solid darkgray;
+            .value {
+                width: 100%;
+                height: 100%;
 
-            border-bottom: 3px solid #444444;
-            
-            .name {
-                transform: translateY(50%);
-                font-size: 2em;
-                color: #e9e9e9;
+                
+                // background-color: $accent;
+                
+                // border-radius: 5px;
+                // border-top: 3px solid darkgray;
+                // border-bottom: 3px solid darkgray;
+                // border-left: 15px solid darkgray;
+                // border-right: 15px solid darkgray;
+    
+                border-bottom: 3px solid #444444;
+                
+                .name {
+                    $yOffset: calc(50% - 20px);
+                    
+                    transform: translateY($yOffset);
+                    font-size: 2em;
+                    color: #e9e9e9;
+                }
             }
         }
     }
+}
+
+::ng-deep .mat-dialog-container {
+    background-color: transparent;
+    box-shadow: none;
 }

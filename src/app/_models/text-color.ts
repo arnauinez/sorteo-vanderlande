@@ -1,6 +1,6 @@
 export enum TextColor {
-    '#6dc736ff',
-    '#3699c7ff',
-    '#ab2463ff',
-    '#fcaf28ff'
+    '#A5ABB0',
+    '#6BACCC',
+    '#2A4A96',
+    '#EF7B10'
 }
